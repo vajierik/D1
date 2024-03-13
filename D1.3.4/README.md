@@ -22,11 +22,5 @@ sudo docker node ls
 
 ## Перемещаем docker-compose.yml на хост manager в каталог переходим в него и запускаем команду
 sudo docker stack deploy -c ./docker-compose.yml socks;
-=======
 
-sudo docker node ls
-
-## Перемещаем docker-compose.yml на хост manager в каталог переходим в него и запускаем команду
-
-sudo docker stack deploy -c ./docker-compose.yml socks;
 
