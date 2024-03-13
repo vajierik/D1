@@ -17,7 +17,7 @@ sudo docker swarm join --token SWMTKN-1-2nb0ezug4egnjas17xt8ety48edl5b6yhfzaac67
 This node joined a swarm as a worker.
 
 ## После выполнения команд на хостах worker проверка на manager
-<<<<<<< HEAD
+
 sudo docker node ls
 
 ## Перемещаем docker-compose.yml на хост manager в каталог переходим в него и запускаем команду
@@ -29,4 +29,4 @@ sudo docker node ls
 ## Перемещаем docker-compose.yml на хост manager в каталог переходим в него и запускаем команду
 
 sudo docker stack deploy -c ./docker-compose.yml socks;
->>>>>>> c96663931bf4255781783d5d3d9f84e0607b6793
+
