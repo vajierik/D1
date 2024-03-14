@@ -1,0 +1,859 @@
+otr@Vajierik:~/D1.7/1$ terraform apply
+module.swarm_cluster.data.yandex_compute_image.my_image: Reading...
+module.swarm_cluster.data.yandex_compute_image.my_image: Read complete after 2s [id=fd85u0rct32prepgjlv0]
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # yandex_vpc_network.network will be created
+  + resource "yandex_vpc_network" "network" {
+      + created_at                = (known after apply)
+      + default_security_group_id = (known after apply)
+      + folder_id                 = (known after apply)
+      + id                        = (known after apply)
+      + labels                    = (known after apply)
+      + name                      = "swarm-network"
+      + subnet_ids                = (known after apply)
+    }
+
+  # yandex_vpc_subnet.subnet will be created
+  + resource "yandex_vpc_subnet" "subnet" {
+      + created_at     = (known after apply)
+      + folder_id      = (known after apply)
+      + id             = (known after apply)
+      + labels         = (known after apply)
+      + name           = "subnet1"
+      + network_id     = (known after apply)
+      + v4_cidr_blocks = [
+          + "192.168.10.0/24",
+        ]
+      + v6_cidr_blocks = (known after apply)
+      + zone           = "ru-central1-a"
+    }
+
+  # module.swarm_cluster.null_resource.docker-swarm-manager[0] will be created
+  + resource "null_resource" "docker-swarm-manager" {
+      + id = (known after apply)
+    }
+
+  # module.swarm_cluster.null_resource.docker-swarm-manager-join[0] will be created
+  + resource "null_resource" "docker-swarm-manager-join" {
+      + id = (known after apply)
+    }
+
+  # module.swarm_cluster.null_resource.docker-swarm-manager-start will be created
+  + resource "null_resource" "docker-swarm-manager-start" {
+      + id = (known after apply)
+    }
+
+  # module.swarm_cluster.null_resource.docker-swarm-worker[0] will be created
+  + resource "null_resource" "docker-swarm-worker" {
+      + id = (known after apply)
+    }
+
+  # module.swarm_cluster.null_resource.docker-swarm-worker[1] will be created
+  + resource "null_resource" "docker-swarm-worker" {
+      + id = (known after apply)
+    }
+
+  # module.swarm_cluster.yandex_compute_instance.vm-manager[0] will be created
+  + resource "yandex_compute_instance" "vm-manager" {
+      + created_at                = (known after apply)
+      + folder_id                 = (known after apply)
+      + fqdn                      = (known after apply)
+      + gpu_cluster_id            = (known after apply)
+      + hostname                  = "manager-0"
+      + id                        = (known after apply)
+      + metadata                  = {
+          + "ssh-keys" = <<-EOT
+                ubuntu:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC3bSI+egyDTjlPzQFNw0tfAf22LvN2nbLg+iJITLjX4p1xOj17m8zn2OcO9S57B6veSlLTMKvhKdFYqeCOxG+hPqC6JFYjMZabnCbJ9l2Kns+aCZYVDvwHqbj/9WHH/4ErLNrKrkuROgyTJcR1/DFroBUzIPATOcbQ4QkQwZGBcXDgDj60QnDbcF4Y9KoeqRLs+j7RNadJpHBMEoOAAuhMBdn2ZCYarjADRJTxaP/OUZ5P20Q0Gl4x2ZmTRx8LeJc0caVEDeUfYWg30DVhJ1jyY4tbaOC+P/J7ZHagodCkRa+p6+cLXtlktrZK+jV4WFtRLwPZgzZD6E8goR6NEEmZED5bJ72JExpvi6mQ/WqqVPc5Y+ycBsTH6AWyQajyL678EmFFo2K30kGRI0roGbQJckTDMliGitf6xZoDXtU7e6q1JVBHBIU/glh6MT6qZvbvPq5om03GCImpYIiMKRyyFny4GPtkCd4a1fi1LXgB4YEtClfHxXDSkI9SKSjbuu8= otr@Vajierik
+            EOT
+        }
+      + name                      = "sockshop-swarm-manager-0"
+      + network_acceleration_type = "standard"
+      + platform_id               = "standard-v1"
+      + service_account_id        = (known after apply)
+      + status                    = (known after apply)
+      + zone                      = (known after apply)
+
+      + boot_disk {
+          + auto_delete = true
+          + device_name = (known after apply)
+          + disk_id     = (known after apply)
+          + mode        = (known after apply)
+
+          + initialize_params {
+              + block_size  = (known after apply)
+              + description = (known after apply)
+              + image_id    = "fd85u0rct32prepgjlv0"
+              + name        = (known after apply)
+              + size        = 8
+              + snapshot_id = (known after apply)
+              + type        = "network-hdd"
+            }
+        }
+
+      + network_interface {
+          + index              = (known after apply)
+          + ip_address         = (known after apply)
+          + ipv4               = true
+          + ipv6               = (known after apply)
+          + ipv6_address       = (known after apply)
+          + mac_address        = (known after apply)
+          + nat                = true
+          + nat_ip_address     = (known after apply)
+          + nat_ip_version     = (known after apply)
+          + security_group_ids = (known after apply)
+          + subnet_id          = (known after apply)
+        }
+
+      + resources {
+          + core_fraction = 100
+          + cores         = 2
+          + memory        = 2
+        }
+    }
+
+  # module.swarm_cluster.yandex_compute_instance.vm-worker[0] will be created
+  + resource "yandex_compute_instance" "vm-worker" {
+      + created_at                = (known after apply)
+      + folder_id                 = (known after apply)
+      + fqdn                      = (known after apply)
+      + gpu_cluster_id            = (known after apply)
+      + hostname                  = "worker-0"
+      + id                        = (known after apply)
+      + metadata                  = {
+          + "ssh-keys" = <<-EOT
+                ubuntu:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC3bSI+egyDTjlPzQFNw0tfAf22LvN2nbLg+iJITLjX4p1xOj17m8zn2OcO9S57B6veSlLTMKvhKdFYqeCOxG+hPqC6JFYjMZabnCbJ9l2Kns+aCZYVDvwHqbj/9WHH/4ErLNrKrkuROgyTJcR1/DFroBUzIPATOcbQ4QkQwZGBcXDgDj60QnDbcF4Y9KoeqRLs+j7RNadJpHBMEoOAAuhMBdn2ZCYarjADRJTxaP/OUZ5P20Q0Gl4x2ZmTRx8LeJc0caVEDeUfYWg30DVhJ1jyY4tbaOC+P/J7ZHagodCkRa+p6+cLXtlktrZK+jV4WFtRLwPZgzZD6E8goR6NEEmZED5bJ72JExpvi6mQ/WqqVPc5Y+ycBsTH6AWyQajyL678EmFFo2K30kGRI0roGbQJckTDMliGitf6xZoDXtU7e6q1JVBHBIU/glh6MT6qZvbvPq5om03GCImpYIiMKRyyFny4GPtkCd4a1fi1LXgB4YEtClfHxXDSkI9SKSjbuu8= otr@Vajierik
+            EOT
+        }
+      + name                      = "sockshop-swarm-worker-0"
+      + network_acceleration_type = "standard"
+      + platform_id               = "standard-v1"
+      + service_account_id        = (known after apply)
+      + status                    = (known after apply)
+      + zone                      = (known after apply)
+
+      + boot_disk {
+          + auto_delete = true
+          + device_name = (known after apply)
+          + disk_id     = (known after apply)
+          + mode        = (known after apply)
+
+          + initialize_params {
+              + block_size  = (known after apply)
+              + description = (known after apply)
+              + image_id    = "fd85u0rct32prepgjlv0"
+              + name        = (known after apply)
+              + size        = 8
+              + snapshot_id = (known after apply)
+              + type        = "network-hdd"
+            }
+        }
+
+      + network_interface {
+          + index              = (known after apply)
+          + ip_address         = (known after apply)
+          + ipv4               = true
+          + ipv6               = (known after apply)
+          + ipv6_address       = (known after apply)
+          + mac_address        = (known after apply)
+          + nat                = true
+          + nat_ip_address     = (known after apply)
+          + nat_ip_version     = (known after apply)
+          + security_group_ids = (known after apply)
+          + subnet_id          = (known after apply)
+        }
+
+      + resources {
+          + core_fraction = 100
+          + cores         = 2
+          + memory        = 2
+        }
+    }
+
+  # module.swarm_cluster.yandex_compute_instance.vm-worker[1] will be created
+  + resource "yandex_compute_instance" "vm-worker" {
+      + created_at                = (known after apply)
+      + folder_id                 = (known after apply)
+      + fqdn                      = (known after apply)
+      + gpu_cluster_id            = (known after apply)
+      + hostname                  = "worker-1"
+      + id                        = (known after apply)
+      + metadata                  = {
+          + "ssh-keys" = <<-EOT
+                ubuntu:ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC3bSI+egyDTjlPzQFNw0tfAf22LvN2nbLg+iJITLjX4p1xOj17m8zn2OcO9S57B6veSlLTMKvhKdFYqeCOxG+hPqC6JFYjMZabnCbJ9l2Kns+aCZYVDvwHqbj/9WHH/4ErLNrKrkuROgyTJcR1/DFroBUzIPATOcbQ4QkQwZGBcXDgDj60QnDbcF4Y9KoeqRLs+j7RNadJpHBMEoOAAuhMBdn2ZCYarjADRJTxaP/OUZ5P20Q0Gl4x2ZmTRx8LeJc0caVEDeUfYWg30DVhJ1jyY4tbaOC+P/J7ZHagodCkRa+p6+cLXtlktrZK+jV4WFtRLwPZgzZD6E8goR6NEEmZED5bJ72JExpvi6mQ/WqqVPc5Y+ycBsTH6AWyQajyL678EmFFo2K30kGRI0roGbQJckTDMliGitf6xZoDXtU7e6q1JVBHBIU/glh6MT6qZvbvPq5om03GCImpYIiMKRyyFny4GPtkCd4a1fi1LXgB4YEtClfHxXDSkI9SKSjbuu8= otr@Vajierik
+            EOT
+        }
+      + name                      = "sockshop-swarm-worker-1"
+      + network_acceleration_type = "standard"
+      + platform_id               = "standard-v1"
+      + service_account_id        = (known after apply)
+      + status                    = (known after apply)
+      + zone                      = (known after apply)
+
+      + boot_disk {
+          + auto_delete = true
+          + device_name = (known after apply)
+          + disk_id     = (known after apply)
+          + mode        = (known after apply)
+
+          + initialize_params {
+              + block_size  = (known after apply)
+              + description = (known after apply)
+              + image_id    = "fd85u0rct32prepgjlv0"
+              + name        = (known after apply)
+              + size        = 8
+              + snapshot_id = (known after apply)
+              + type        = "network-hdd"
+            }
+        }
+
+      + network_interface {
+          + index              = (known after apply)
+          + ip_address         = (known after apply)
+          + ipv4               = true
+          + ipv6               = (known after apply)
+          + ipv6_address       = (known after apply)
+          + mac_address        = (known after apply)
+          + nat                = true
+          + nat_ip_address     = (known after apply)
+          + nat_ip_version     = (known after apply)
+          + security_group_ids = (known after apply)
+          + subnet_id          = (known after apply)
+        }
+
+      + resources {
+          + core_fraction = 100
+          + cores         = 2
+          + memory        = 2
+        }
+    }
+
+Plan: 10 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + external_ip_address_manager = [
+      + [
+          + (known after apply),
+        ],
+    ]
+  + external_ip_address_worker  = [
+      + [
+          + (known after apply),
+          + (known after apply),
+        ],
+    ]
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+yandex_vpc_network.network: Creating...
+yandex_vpc_network.network: Creation complete after 4s [id=enpdvotcs3gn9ftk1bvv]
+yandex_vpc_subnet.subnet: Creating...
+yandex_vpc_subnet.subnet: Creation complete after 1s [id=e9bhtlg73p45cf73emlv]
+module.swarm_cluster.yandex_compute_instance.vm-manager[0]: Creating...
+module.swarm_cluster.yandex_compute_instance.vm-worker[0]: Creating...
+module.swarm_cluster.yandex_compute_instance.vm-worker[1]: Creating...
+module.swarm_cluster.yandex_compute_instance.vm-manager[0]: Still creating... [10s elapsed]
+module.swarm_cluster.yandex_compute_instance.vm-worker[0]: Still creating... [10s elapsed]
+module.swarm_cluster.yandex_compute_instance.vm-worker[1]: Still creating... [10s elapsed]
+module.swarm_cluster.yandex_compute_instance.vm-manager[0]: Still creating... [20s elapsed]
+module.swarm_cluster.yandex_compute_instance.vm-worker[0]: Still creating... [20s elapsed]
+module.swarm_cluster.yandex_compute_instance.vm-worker[1]: Still creating... [20s elapsed]
+module.swarm_cluster.yandex_compute_instance.vm-manager[0]: Still creating... [30s elapsed]
+module.swarm_cluster.yandex_compute_instance.vm-worker[0]: Still creating... [30s elapsed]
+module.swarm_cluster.yandex_compute_instance.vm-worker[1]: Still creating... [30s elapsed]
+module.swarm_cluster.yandex_compute_instance.vm-worker[1]: Creation complete after 39s [id=fhmmr9ggnn4h8e30lb73]
+module.swarm_cluster.yandex_compute_instance.vm-manager[0]: Still creating... [40s elapsed]
+module.swarm_cluster.yandex_compute_instance.vm-worker[0]: Still creating... [40s elapsed]
+module.swarm_cluster.yandex_compute_instance.vm-manager[0]: Creation complete after 43s [id=fhm9ti44d8spgom9b6fq]
+module.swarm_cluster.null_resource.docker-swarm-manager[0]: Creating...
+module.swarm_cluster.null_resource.docker-swarm-manager[0]: Provisioning with 'file'...
+module.swarm_cluster.yandex_compute_instance.vm-worker[0]: Creation complete after 44s [id=fhml7a3smpsvmsfnj9vm]
+module.swarm_cluster.null_resource.docker-swarm-manager[0]: Still creating... [10s elapsed]
+module.swarm_cluster.null_resource.docker-swarm-manager[0]: Still creating... [20s elapsed]
+module.swarm_cluster.null_resource.docker-swarm-manager[0]: Still creating... [30s elapsed]
+module.swarm_cluster.null_resource.docker-swarm-manager[0]: Still creating... [40s elapsed]
+module.swarm_cluster.null_resource.docker-swarm-manager[0]: Still creating... [50s elapsed]
+module.swarm_cluster.null_resource.docker-swarm-manager[0]: Provisioning with 'remote-exec'...
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Connecting to remote host via SSH...
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):   Host: 158.160.115.52
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):   User: ubuntu
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):   Password: false
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):   Private key: true
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):   Certificate: false
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):   SSH Agent: false
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):   Checking Host Key: false
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):   Target Platform: unix
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Connected!
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): # Executing docker install script, commit: e5543d473431b782227f8908005543bb4389b8de
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): + sudo -E sh -c apt-get update -qq >/dev/null
+module.swarm_cluster.null_resource.docker-swarm-manager[0]: Still creating... [1m0s elapsed]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): + sudo -E sh -c DEBIAN_FRONTEND=noninteractive apt-get install -y -qq apt-transport-https ca-certificates curl >/dev/null
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): + sudo -E sh -c install -m 0755 -d /etc/apt/keyrings
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): + sudo -E sh -c curl -fsSL "https://download.docker.com/linux/ubuntu/gpg" | gpg --dearmor --yes -o /etc/apt/keyrings/docker.gpg
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): + sudo -E sh -c chmod a+r /etc/apt/keyrings/docker.gpg
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): + sudo -E sh -c echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu jammy stable" > /etc/apt/sources.list.d/docker.list
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): + sudo -E sh -c apt-get update -qq >/dev/null
+module.swarm_cluster.null_resource.docker-swarm-manager[0]: Still creating... [1m10s elapsed]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): + sudo -E sh -c DEBIAN_FRONTEND=noninteractive apt-get install -y -qq docker-ce docker-ce-cli containerd.io docker-compose-plugin docker-ce-rootless-extras docker-buildx-plugin >/dev/null
+module.swarm_cluster.null_resource.docker-swarm-manager[0]: Still creating... [1m20s elapsed]
+module.swarm_cluster.null_resource.docker-swarm-manager[0]: Still creating... [1m30s elapsed]
+module.swarm_cluster.null_resource.docker-swarm-manager[0]: Still creating... [1m40s elapsed]
+module.swarm_cluster.null_resource.docker-swarm-manager[0]: Still creating... [1m50s elapsed]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): + sudo -E sh -c docker version
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Client: Docker Engine - Community
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):  Version:           25.0.4
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):  API version:       1.44
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):  Go version:        go1.21.8
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):  Git commit:        1a576c5
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):  Built:             Wed Mar  6 16:32:12 2024
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):  OS/Arch:           linux/amd64
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):  Context:           default
+
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Server: Docker Engine - Community
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):  Engine:
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):   Version:          25.0.4
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):   API version:      1.44 (minimum version 1.24)
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):   Go version:       go1.21.8
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):   Git commit:       061aa95
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):   Built:            Wed Mar  6 16:32:12 2024
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):   OS/Arch:          linux/amd64
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):   Experimental:     false
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):  containerd:
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):   Version:          1.6.28
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):   GitCommit:        ae07eda36dd25f8a1b98dfbf587313b99c0190bb
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):  runc:
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):   Version:          1.1.12
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):   GitCommit:        v1.1.12-0-g51d5e94
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):  docker-init:
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):   Version:          0.19.0
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):   GitCommit:        de40ad0
+
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): ================================================================================
+
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): To run Docker as a non-privileged user, consider setting up the
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Docker daemon in rootless mode for your user:
+
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):     dockerd-rootless-setuptool.sh install
+
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Visit https://docs.docker.com/go/rootless/ to learn about rootless mode.
+
+
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): To run the Docker daemon as a fully privileged service, but granting non-root
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): users access, refer to https://docs.docker.com/go/daemon-access/
+
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): WARNING: Access to the remote API on a privileged Docker daemon is equivalent
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):          to root access on the host. Refer to the 'Docker daemon attack surface'
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):          documentation for details: https://docs.docker.com/go/attack-surface/
+
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): ================================================================================
+
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Reading package lists... 0%
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Reading package lists... 100%
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Reading package lists... Done
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Building dependency tree... 0%
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Building dependency tree... 0%
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Building dependency tree... 50%
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Building dependency tree... 50%
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Building dependency tree... Done
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Reading state information... 0%
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Reading state information... 0%
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Reading state information... Done
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): The following additional packages will be installed:
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):   python3-docker python3-dockerpty
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):   python3-docopt python3-dotenv
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):   python3-texttable python3-websocket
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Recommended packages:
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):   docker.io
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): The following NEW packages will be installed:
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):   docker-compose python3-docker
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):   python3-dockerpty python3-docopt
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):   python3-dotenv python3-texttable
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):   python3-websocket
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): 0 upgraded, 7 newly installed, 0 to remove and 2 not upgraded.
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Need to get 290 kB of archives.
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): After this operation, 1,545 kB of additional disk space will be used.
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): 0% [Working]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Get:1 http://mirror.yandex.ru/ubuntu jammy/universe amd64 python3-websocket all 1.2.3-1 [34.7 kB]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): 0% [1 python3-websocket 0 B/34.7 kB 0%]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): 12% [Working]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Get:2 http://mirror.yandex.ru/ubuntu jammy/universe amd64 python3-docker all 5.0.3-1 [89.3 kB]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): 26% [2 python3-docker 50.0 kB/89.3 kB 5
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): 40% [Waiting for headers]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Get:3 http://mirror.yandex.ru/ubuntu jammy/universe amd64 python3-dockerpty all 0.4.1-2 [11.1 kB]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): 43% [3 python3-dockerpty 11.1 kB/11.1 k
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Get:4 http://mirror.yandex.ru/ubuntu jammy/universe amd64 python3-docopt all 0.6.2-4 [26.9 kB]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): 53% [4 python3-docopt 26.9 kB/26.9 kB 1
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): 56% [Waiting for headers]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Get:5 http://mirror.yandex.ru/ubuntu jammy/universe amd64 python3-dotenv all 0.19.2-1 [20.5 kB]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): 62% [5 python3-dotenv 20.5 kB/20.5 kB 1
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Get:6 http://mirror.yandex.ru/ubuntu jammy/universe amd64 python3-texttable all 1.6.4-1 [11.4 kB]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): 68% [6 python3-texttable 11.4 kB/11.4 k
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Get:7 http://mirror.yandex.ru/ubuntu jammy/universe amd64 docker-compose all 1.29.2-1 [95.8 kB]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): 89% [7 docker-compose 65.2 kB/95.8 kB 6
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): 100% [Working]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Fetched 290 kB in 0s (10.8 MB/s)
+                                                                          Selecting previously unselected package python3-websocket.
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): (Reading database ...
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): (Reading database ... 5%
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): (Reading database ... 10%
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): (Reading database ... 15%
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): (Reading database ... 20%
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): (Reading database ... 25%
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): (Reading database ... 30%
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): (Reading database ... 35%
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): (Reading database ... 40%
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): (Reading database ... 45%
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): (Reading database ... 50%
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): (Reading database ... 55%
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): (Reading database ... 60%
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): (Reading database ... 65%
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): (Reading database ... 70%
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): (Reading database ... 75%
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): (Reading database ... 80%
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): (Reading database ... 85%
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): (Reading database ... 90%
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): (Reading database ... 95%
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): (Reading database ... 100%
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): (Reading database ... 110313 files and directories currently installed.)
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Preparing to unpack .../0-python3-websocket_1.2.3-1_all.deb ...
+Progress: [  3%] [..................] ker-swarm-manager[0] (remote-exec): Unpacking python3-websocket (1.2.3-1) ...
+Progress: [  7%] [#.................] ker-swarm-manager[0] (remote-exec): Selecting previously unselected package python3-docker.
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Preparing to unpack .../1-python3-docker_5.0.3-1_all.deb ...
+Progress: [ 10%] [#.................] ker-swarm-manager[0] (remote-exec): Unpacking python3-docker (5.0.3-1) ...
+Progress: [ 14%] [##................] ker-swarm-manager[0] (remote-exec): Selecting previously unselected package python3-dockerpty.
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Preparing to unpack .../2-python3-dockerpty_0.4.1-2_all.deb ...
+Progress: [ 17%] [###...............] ker-swarm-manager[0] (remote-exec): Unpacking python3-dockerpty (0.4.1-2) ...
+Progress: [ 21%] [###...............] ker-swarm-manager[0] (remote-exec): Selecting previously unselected package python3-docopt.
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Preparing to unpack .../3-python3-docopt_0.6.2-4_all.deb ...
+Progress: [ 24%] [####..............] ker-swarm-manager[0] (remote-exec): Unpacking python3-docopt (0.6.2-4) ...
+Progress: [ 28%] [####..............] ker-swarm-manager[0] (remote-exec): Selecting previously unselected package python3-dotenv.
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Preparing to unpack .../4-python3-dotenv_0.19.2-1_all.deb ...
+Progress: [ 31%] [#####.............] ker-swarm-manager[0] (remote-exec): Unpacking python3-dotenv (0.19.2-1) ...
+Progress: [ 34%] [######............] ker-swarm-manager[0] (remote-exec): Selecting previously unselected package python3-texttable.
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Preparing to unpack .../5-python3-texttable_1.6.4-1_all.deb ...
+Progress: [ 38%] [######............] ker-swarm-manager[0] (remote-exec): Unpacking python3-texttable (1.6.4-1) ...
+Progress: [ 41%] [#######...........] ker-swarm-manager[0] (remote-exec): Selecting previously unselected package docker-compose.
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Preparing to unpack .../6-docker-compose_1.29.2-1_all.deb ...
+Progress: [ 45%] [########..........] ker-swarm-manager[0] (remote-exec): Unpacking docker-compose (1.29.2-1) ...
+Progress: [ 48%] [########..........] ker-swarm-manager[0] (remote-exec): Setting up python3-dotenv (0.19.2-1) ...
+Progress: [ 52%] [#########.........] ker-swarm-manager[0] (remote-exec):
+Progress: [ 55%] [#########.........] ker-swarm-manager[0] (remote-exec): Setting up python3-texttable (1.6.4-1) ...
+Progress: [ 59%] [##########........] ker-swarm-manager[0] (remote-exec):
+Progress: [ 62%] [###########.......] ker-swarm-manager[0] (remote-exec): Setting up python3-docopt (0.6.2-4) ...
+Progress: [ 66%] [###########.......] ker-swarm-manager[0] (remote-exec):
+Progress: [ 69%] [############......] ker-swarm-manager[0] (remote-exec): Setting up python3-websocket (1.2.3-1) ...
+Progress: [ 72%] [#############.....] ker-swarm-manager[0] (remote-exec):
+Progress: [ 76%] [#############.....] ker-swarm-manager[0] (remote-exec): Setting up python3-dockerpty (0.4.1-2) ...
+Progress: [ 79%] [##############....] ker-swarm-manager[0] (remote-exec):
+Progress: [ 83%] [##############....] ker-swarm-manager[0] (remote-exec): Setting up python3-docker (5.0.3-1) ...
+Progress: [ 86%] [###############...] ker-swarm-manager[0] (remote-exec):
+Progress: [ 90%] [################..] ker-swarm-manager[0] (remote-exec): Setting up docker-compose (1.29.2-1) ...
+Progress: [ 93%] [################..] ker-swarm-manager[0] (remote-exec):
+Progress: [ 97%] [#################.] ker-swarm-manager[0] (remote-exec): Processing triggers for man-db (2.10.2-1) ...
+
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [                ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [                ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [                ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [                ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [                ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [                ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [                ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [                ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [                ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [=               ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [=               ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [=               ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [=               ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [=               ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [=               ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [=               ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [=               ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [=               ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [==              ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [==              ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [==              ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [==              ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [==              ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [==              ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [==              ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [==              ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [==              ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [===             ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [===             ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [===             ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [===             ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [===             ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [===             ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [===             ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [===             ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [===             ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [====            ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [====            ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [====            ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [====            ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [====            ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [====            ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [====            ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [====            ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [====            ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [=====           ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [=====           ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [=====           ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [=====           ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [=====           ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [=====           ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [=====           ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [=====           ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [=====           ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [======          ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [======          ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [======          ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [======          ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [======          ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [======          ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [======          ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [======          ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [======          ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [=======         ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [=======         ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [=======         ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [=======         ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [=======         ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [=======         ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [=======         ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [=======         ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [========        ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [========        ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [========        ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [========        ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [========        ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [========        ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [========        ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [========        ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [========        ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [=========       ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [=========       ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [=========       ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [=========       ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [=========       ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [=========       ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [=========       ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [=========       ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [=========       ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [==========      ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [==========      ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [==========      ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [==========      ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [==========      ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [==========      ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [==========      ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [==========      ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [==========      ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [===========     ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [===========     ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [===========     ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [===========     ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [===========     ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [===========     ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [===========     ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [===========     ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [===========     ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [============    ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [============    ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [============    ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [============    ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [============    ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [============    ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [============    ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [============    ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [============    ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [=============   ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [=============   ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [=============   ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [=============   ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [=============   ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [=============   ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [=============   ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [=============   ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [=============   ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [==============  ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [==============  ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [==============  ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [==============  ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [==============  ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [==============  ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [==============  ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [==============  ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [==============  ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [=============== ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [=============== ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [=============== ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [=============== ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [=============== ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [=============== ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [=============== ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [=============== ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes... [================]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning processes...
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning linux images... [             ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning linux images... [===          ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning linux images... [======       ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning linux images... [=========    ]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning linux images... [=============]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Scanning linux images...
+
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Running kernel seems to be up-to-date.
+
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): No services need to be restarted.
+
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): No containers need to be restarted.
+
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): No user sessions are running outdated
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):  binaries.
+
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): No VM guests are running outdated
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):  hypervisor (qemu) binaries on this
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):  host.
+module.swarm_cluster.null_resource.docker-swarm-manager[0]: Still creating... [2m0s elapsed]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): Swarm initialized: current node (5nv5dbzmq2p9lq2fjir7ys52u) is now a manager.
+
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): To add a worker to this swarm, run the following command:
+
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec):     docker swarm join --token SWMTKN-1-1tavm1utcr2r1c091d9wxp3pp3am8uyyfq1rtzxd0m6yr5afi4-alh0barbr9qea64z62snew6ie 192.168.10.16:2377
+
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
+
+module.swarm_cluster.null_resource.docker-swarm-manager[0]: Still creating... [2m10s elapsed]
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): 0
+module.swarm_cluster.null_resource.docker-swarm-manager[0] (remote-exec): COMPLETED
+module.swarm_cluster.null_resource.docker-swarm-manager[0]: Creation complete after 2m11s [id=232466569837031132]
+module.swarm_cluster.null_resource.docker-swarm-manager-join[0]: Creating...
+module.swarm_cluster.null_resource.docker-swarm-manager-join[0]: Provisioning with 'local-exec'...
+module.swarm_cluster.null_resource.docker-swarm-manager-join[0] (local-exec): Executing: ["/bin/sh" "-c" "TOKEN=$(ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no ubuntu@158.160.115.52 docker swarm join-token -q worker); echo \"#!/usr/bin/env bash\nsudo docker swarm join --token $TOKEN 158.160.115.52:2377\nexit 0\" >| join.sh"]
+module.swarm_cluster.null_resource.docker-swarm-manager-join[0] (local-exec): Warning: Permanently added '158.160.115.52' (ED25519) to the list of known hosts.
+module.swarm_cluster.null_resource.docker-swarm-manager-join[0]: Creation complete after 5s [id=4842472492845447385]
+module.swarm_cluster.null_resource.docker-swarm-manager-start: Creating...
+module.swarm_cluster.null_resource.docker-swarm-worker[0]: Creating...
+module.swarm_cluster.null_resource.docker-swarm-worker[1]: Creating...
+module.swarm_cluster.null_resource.docker-swarm-manager-start: Provisioning with 'file'...
+module.swarm_cluster.null_resource.docker-swarm-worker[0]: Provisioning with 'file'...
+module.swarm_cluster.null_resource.docker-swarm-worker[1]: Provisioning with 'file'...
+module.swarm_cluster.null_resource.docker-swarm-manager-start: Provisioning with 'remote-exec'...
+module.swarm_cluster.null_resource.docker-swarm-manager-start (remote-exec): Connecting to remote host via SSH...
+module.swarm_cluster.null_resource.docker-swarm-manager-start (remote-exec):   Host: 158.160.115.52
+module.swarm_cluster.null_resource.docker-swarm-manager-start (remote-exec):   User: ubuntu
+module.swarm_cluster.null_resource.docker-swarm-manager-start (remote-exec):   Password: false
+module.swarm_cluster.null_resource.docker-swarm-manager-start (remote-exec):   Private key: true
+module.swarm_cluster.null_resource.docker-swarm-manager-start (remote-exec):   Certificate: false
+module.swarm_cluster.null_resource.docker-swarm-manager-start (remote-exec):   SSH Agent: false
+module.swarm_cluster.null_resource.docker-swarm-manager-start (remote-exec):   Checking Host Key: false
+module.swarm_cluster.null_resource.docker-swarm-manager-start (remote-exec):   Target Platform: unix
+module.swarm_cluster.null_resource.docker-swarm-manager-start (remote-exec): Connected!
+module.swarm_cluster.null_resource.docker-swarm-worker[1]: Provisioning with 'remote-exec'...
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec): Connecting to remote host via SSH...
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec):   Host: 158.160.125.172
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec):   User: ubuntu
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec):   Password: false
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec):   Private key: true
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec):   Certificate: false
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec):   SSH Agent: false
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec):   Checking Host Key: false
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec):   Target Platform: unix
+module.swarm_cluster.null_resource.docker-swarm-worker[0]: Provisioning with 'remote-exec'...
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec): Connecting to remote host via SSH...
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec):   Host: 158.160.103.96
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec):   User: ubuntu
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec):   Password: false
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec):   Private key: true
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec):   Certificate: false
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec):   SSH Agent: false
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec):   Checking Host Key: false
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec):   Target Platform: unix
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec): Connected!
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec): Connected!
+module.swarm_cluster.null_resource.docker-swarm-manager-start (remote-exec): Ignoring unsupported options: restart
+
+module.swarm_cluster.null_resource.docker-swarm-manager-start (remote-exec): Creating network sockshop-swarm_default
+module.swarm_cluster.null_resource.docker-swarm-manager-start (remote-exec): Creating service sockshop-swarm_user
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec): # Executing docker install script, commit: e5543d473431b782227f8908005543bb4389b8de
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec): # Executing docker install script, commit: e5543d473431b782227f8908005543bb4389b8de
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec): + sudo -E sh -c apt-get update -qq >/dev/null
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec): + sudo -E sh -c apt-get update -qq >/dev/null
+module.swarm_cluster.null_resource.docker-swarm-manager-start (remote-exec): Creating service sockshop-swarm_front-end
+module.swarm_cluster.null_resource.docker-swarm-manager-start (remote-exec): Creating service sockshop-swarm_catalogue-db
+module.swarm_cluster.null_resource.docker-swarm-worker[0]: Still creating... [10s elapsed]
+module.swarm_cluster.null_resource.docker-swarm-worker[1]: Still creating... [10s elapsed]
+module.swarm_cluster.null_resource.docker-swarm-manager-start: Still creating... [10s elapsed]
+module.swarm_cluster.null_resource.docker-swarm-manager-start (remote-exec): Creating service sockshop-swarm_queue-master
+module.swarm_cluster.null_resource.docker-swarm-manager-start (remote-exec): Creating service sockshop-swarm_user-sim
+module.swarm_cluster.null_resource.docker-swarm-manager-start (remote-exec): Creating service sockshop-swarm_payment
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec): + sudo -E sh -c DEBIAN_FRONTEND=noninteractive apt-get install -y -qq apt-transport-https ca-certificates curl >/dev/null
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec): + sudo -E sh -c DEBIAN_FRONTEND=noninteractive apt-get install -y -qq apt-transport-https ca-certificates curl >/dev/null
+module.swarm_cluster.null_resource.docker-swarm-manager-start (remote-exec): Creating service sockshop-swarm_orders
+module.swarm_cluster.null_resource.docker-swarm-manager-start: Still creating... [20s elapsed]
+module.swarm_cluster.null_resource.docker-swarm-worker[1]: Still creating... [20s elapsed]
+module.swarm_cluster.null_resource.docker-swarm-worker[0]: Still creating... [20s elapsed]
+module.swarm_cluster.null_resource.docker-swarm-manager-start (remote-exec): Creating service sockshop-swarm_catalogue
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec): + sudo -E sh -c install -m 0755 -d /etc/apt/keyrings
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec): + sudo -E sh -c curl -fsSL "https://download.docker.com/linux/ubuntu/gpg" | gpg --dearmor --yes -o /etc/apt/keyrings/docker.gpg
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec): + sudo -E sh -c chmod a+r /etc/apt/keyrings/docker.gpg
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec): + sudo -E sh -c echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu jammy stable" > /etc/apt/sources.list.d/docker.list
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec): + sudo -E sh -c apt-get update -qq >/dev/null
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec): + sudo -E sh -c install -m 0755 -d /etc/apt/keyrings
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec): + sudo -E sh -c curl -fsSL "https://download.docker.com/linux/ubuntu/gpg" | gpg --dearmor --yes -o /etc/apt/keyrings/docker.gpg
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec): + sudo -E sh -c chmod a+r /etc/apt/keyrings/docker.gpg
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec): + sudo -E sh -c echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu jammy stable" > /etc/apt/sources.list.d/docker.list
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec): + sudo -E sh -c apt-get update -qq >/dev/null
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec): + sudo -E sh -c DEBIAN_FRONTEND=noninteractive apt-get install -y -qq docker-ce docker-ce-cli containerd.io docker-compose-plugin docker-ce-rootless-extras docker-buildx-plugin >/dev/null
+module.swarm_cluster.null_resource.docker-swarm-manager-start (remote-exec): Creating service sockshop-swarm_carts
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec): + sudo -E sh -c DEBIAN_FRONTEND=noninteractive apt-get install -y -qq docker-ce docker-ce-cli containerd.io docker-compose-plugin docker-ce-rootless-extras docker-buildx-plugin >/dev/null
+module.swarm_cluster.null_resource.docker-swarm-manager-start (remote-exec): Creating service sockshop-swarm_shipping
+module.swarm_cluster.null_resource.docker-swarm-manager-start (remote-exec): Creating service sockshop-swarm_user-db
+module.swarm_cluster.null_resource.docker-swarm-worker[0]: Still creating... [30s elapsed]
+module.swarm_cluster.null_resource.docker-swarm-worker[1]: Still creating... [30s elapsed]
+module.swarm_cluster.null_resource.docker-swarm-manager-start: Still creating... [30s elapsed]
+module.swarm_cluster.null_resource.docker-swarm-manager-start (remote-exec): Creating service sockshop-swarm_rabbitmq
+module.swarm_cluster.null_resource.docker-swarm-manager-start (remote-exec): Creating service sockshop-swarm_orders-db
+module.swarm_cluster.null_resource.docker-swarm-manager-start (remote-exec): Creating service sockshop-swarm_edge-router
+module.swarm_cluster.null_resource.docker-swarm-manager-start: Still creating... [40s elapsed]
+module.swarm_cluster.null_resource.docker-swarm-worker[1]: Still creating... [40s elapsed]
+module.swarm_cluster.null_resource.docker-swarm-worker[0]: Still creating... [40s elapsed]
+module.swarm_cluster.null_resource.docker-swarm-manager-start (remote-exec): Creating service sockshop-swarm_carts-db
+module.swarm_cluster.null_resource.docker-swarm-manager-start: Provisioning with 'local-exec'...
+module.swarm_cluster.null_resource.docker-swarm-manager-start (local-exec): Executing: ["/bin/sh" "-c" "rm join.sh"]
+module.swarm_cluster.null_resource.docker-swarm-manager-start: Creation complete after 43s [id=5116143299315499778]
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec): + sudo -E sh -c docker version
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec): Client: Docker Engine - Community
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec):  Version:           25.0.4
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec):  API version:       1.44
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec):  Go version:        go1.21.8
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec):  Git commit:        1a576c5
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec):  Built:             Wed Mar  6 16:32:12 2024
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec):  OS/Arch:           linux/amd64
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec):  Context:           default
+
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec): Server: Docker Engine - Community
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec):  Engine:
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec):   Version:          25.0.4
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec):   API version:      1.44 (minimum version 1.24)
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec):   Go version:       go1.21.8
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec):   Git commit:       061aa95
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec):   Built:            Wed Mar  6 16:32:12 2024
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec):   OS/Arch:          linux/amd64
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec):   Experimental:     false
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec):  containerd:
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec):   Version:          1.6.28
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec):   GitCommit:        ae07eda36dd25f8a1b98dfbf587313b99c0190bb
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec):  runc:
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec):   Version:          1.1.12
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec):   GitCommit:        v1.1.12-0-g51d5e94
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec):  docker-init:
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec):   Version:          0.19.0
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec):   GitCommit:        de40ad0
+
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec): ================================================================================
+
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec): To run Docker as a non-privileged user, consider setting up the
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec): Docker daemon in rootless mode for your user:
+
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec):     dockerd-rootless-setuptool.sh install
+
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec): Visit https://docs.docker.com/go/rootless/ to learn about rootless mode.
+
+
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec): To run the Docker daemon as a fully privileged service, but granting non-root
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec): users access, refer to https://docs.docker.com/go/daemon-access/
+
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec): WARNING: Access to the remote API on a privileged Docker daemon is equivalent
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec):          to root access on the host. Refer to the 'Docker daemon attack surface'
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec):          documentation for details: https://docs.docker.com/go/attack-surface/
+
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec): ================================================================================
+
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec): + sudo -E sh -c docker version
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec): Client: Docker Engine - Community
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec):  Version:           25.0.4
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec):  API version:       1.44
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec):  Go version:        go1.21.8
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec):  Git commit:        1a576c5
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec):  Built:             Wed Mar  6 16:32:12 2024
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec):  OS/Arch:           linux/amd64
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec):  Context:           default
+
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec): Server: Docker Engine - Community
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec):  Engine:
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec):   Version:          25.0.4
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec):   API version:      1.44 (minimum version 1.24)
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec):   Go version:       go1.21.8
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec):   Git commit:       061aa95
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec):   Built:            Wed Mar  6 16:32:12 2024
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec):   OS/Arch:          linux/amd64
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec):   Experimental:     false
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec):  containerd:
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec):   Version:          1.6.28
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec):   GitCommit:        ae07eda36dd25f8a1b98dfbf587313b99c0190bb
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec):  runc:
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec):   Version:          1.1.12
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec):   GitCommit:        v1.1.12-0-g51d5e94
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec):  docker-init:
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec):   Version:          0.19.0
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec):   GitCommit:        de40ad0
+
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec): ================================================================================
+
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec): To run Docker as a non-privileged user, consider setting up the
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec): Docker daemon in rootless mode for your user:
+
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec):     dockerd-rootless-setuptool.sh install
+
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec): Visit https://docs.docker.com/go/rootless/ to learn about rootless mode.
+
+
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec): To run the Docker daemon as a fully privileged service, but granting non-root
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec): users access, refer to https://docs.docker.com/go/daemon-access/
+
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec): WARNING: Access to the remote API on a privileged Docker daemon is equivalent
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec):          to root access on the host. Refer to the 'Docker daemon attack surface'
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec):          documentation for details: https://docs.docker.com/go/attack-surface/
+
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec): ================================================================================
+
+module.swarm_cluster.null_resource.docker-swarm-worker[0]: Still creating... [50s elapsed]
+module.swarm_cluster.null_resource.docker-swarm-worker[1]: Still creating... [50s elapsed]
+module.swarm_cluster.null_resource.docker-swarm-worker[1] (remote-exec): This node joined a swarm as a worker.
+module.swarm_cluster.null_resource.docker-swarm-worker[0] (remote-exec): This node joined a swarm as a worker.
+module.swarm_cluster.null_resource.docker-swarm-worker[1]: Creation complete after 51s [id=1288737360462179364]
+module.swarm_cluster.null_resource.docker-swarm-worker[0]: Creation complete after 51s [id=719719069649789667]
+
+Apply complete! Resources: 10 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+external_ip_address_manager = [
+  [
+    "158.160.115.52",
+  ],
+]
+external_ip_address_worker = [
+  [
+    "158.160.103.96",
+    "158.160.125.172",
+  ],
+]
+otr@Vajierik:~/D1.7/1$
